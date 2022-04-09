@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Roboto+Mono:100i,300,300i,400,400i,500,500i,700,700i&display=swap' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'fonts/material-icon/css4/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'css4/style.css' %}">
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <form method="POST" class="appointment-form" id="foodform" data-courses-url="{% url 'taskapp:ajax_load_branches' %}">
+                {% csrf_token %}
+                <h2>Food ordering form</h2>
+                <div class="form-group-1">
+                    <input type="text" name="name" id="title" placeholder="Enter your Name" required />
+                    <input type="email" name="email" id="email" placeholder="Email" required />
+                    <input type="number" name="ph" id="phone_number" placeholder="Phone number" required />
+                    <input type="text" name="add" id="name" placeholder="Enter your Address" required />
+                    <div class="select-list">
+                        <select name="dist" id="dist">
+                            <option slected value="">Select district</option>
+                            {% for i in dist %}
+                            <option value="{{i.id}}">{{i.name}}</option>
+                            {% endfor %}
+                        </select >
+                    </div>
+                     <div class="select-list">
+                        <select name="place" id="place">
+
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group-2">
+                    <h3>Product details</h3>
+                    <div class="select-list">
+                        <select name="prod" id="prod">
+                            <option seleected value="">Choose product</option>
+                            {% for i in pro %}
+                            <option value="{{i.id}}">{{i.product}}/{{i.price}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                     <input type="number" name="quantity" id="quantity" placeholder="Enter quantity" required />
+
+                </div>
+                {% for m in messages %}
+            <h3 style="color:red;">{{m}}</h3>
+            {% endfor %}
+
+                   <a href=""> <input type="submit" name="submit" class="btn btn-success" value="Order Now" /></a>
+                <br><br>
+                   <a href=""> <input type="submit" name="submit"  class="btn btn-danger" value="Cancel" /></a>
+                <br><br>
+                   <a href="{% url 'taskapp:lout' %}" style="color:blue;font-size:18px;">Click here for Logout</a>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'vendor4/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js4/main.js' %}"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $("#dist").change(function () {
+        var url = $("#foodform").attr("data-courses-url");
+        var branchId = $(this).val();
+
+        $.ajax({
+        url: url,
+        data: {
+            'dist': branchId
+            },
+            success: function (data) {
+                $("#place").html(data);
+                }
+                });
+                });
+    </script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

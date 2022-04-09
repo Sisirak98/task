@@ -1,0 +1,59 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Roboto+Mono:100i,300,300i,400,400i,500,500i,700,700i&display=swap' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Asking form</title>
+  </head>
+  <body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<center>
+    <div>
+        <center>
+    <h1 style="color:Blue;"><i>Oder placed successfully.... Your order will be delivered at {{time}}</i></h1>
+        </center>
+        </div></center>
+<br><br>
+
+<center>
+
+        <a href="{% url 'taskapp:lout' %}"> <input type="submit" value="LOGOUT" class="btn btn-danger" style="width:100px;"></a>
+
+
+    <a href="{% url 'taskapp:home' %}"> <input type="submit" value="OK" class="btn btn-success" style="width:100px;margin-left:400px;"></a>
+
+    </center>
+
+
+
+
+
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
